@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-CharacterManager characterManager = new CharacterManager(); 
-
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
