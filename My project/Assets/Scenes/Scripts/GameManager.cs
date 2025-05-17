@@ -7,19 +7,29 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
 
-    public GameObject playerPrefab;
-    public GameObject _playerInput;
+    public static GameManager instance { get; private set; }
 
+    [SerializeField] private Charactermanager characterManager;
+    [SerializeField] private LevelManager levelManager;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        GetComponent<Charactermanager>();
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        initializeGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void initializeGame()
     {
-        
+        levelManager.LoadLevelAdditively("SimpleLeve");
+        characterManager.SpawnCharacter();
     }
+    
 }

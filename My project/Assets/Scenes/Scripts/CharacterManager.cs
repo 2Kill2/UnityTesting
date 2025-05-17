@@ -6,19 +6,11 @@ using UnityEngine;
 
 public class Charactermanager : MonoBehaviour
 {
-    private GameObject playerobject;
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerobject = this.gameObject;
-        Debug.Log("Player object set to: " + playerobject.name);
-    }
+    [SerializeField] private GameObject characterPrefab;
 
-    
-
-    // Update is called once per frame
-    void Update()
+    public void SpawnCharacter()
     {
-        Debug.Log("Player Pos: " + " x: " + playerobject.transform.position.x + " y: " + playerobject.transform.position.y + " z: " + playerobject.transform.position.z); //add 5 second delay so it doesnt spam log
+        Vector3 spawnPosition = Vector3.zero;
+        Instantiate(characterPrefab, spawnPosition, Quaternion.identity, transform);
     }
 }
