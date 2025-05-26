@@ -3,18 +3,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
-namespace StarterAssets
+namespace AlexScripts
 {
-	public class StarterAssetsInputs : MonoBehaviour
+	public class PlayerInputScript : MonoBehaviour
 	{
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public bool aim;
+		private bool Aim;
+		public bool Fire;
 
-		[Header("Movement Settings")]
+	public bool GetAimState()
+        {
+            
+            return Aim;
+        }
+
+        [Header("Movement Settings")]
 		public bool analogMovement;
 
 		[Header("Mouse Cursor Settings")]
@@ -27,7 +34,13 @@ namespace StarterAssets
 			MoveInput(value.Get<Vector2>());
 		}
 
-		public void OnLook(InputValue value)
+
+
+		public void OnAim(InputValue value)
+        {
+            AimInput(value.isPressed);
+        }
+        public void OnLook(InputValue value)
 		{
 			if(cursorInputForLook)
 			{
@@ -50,9 +63,18 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
+		}
 
-		public void LookInput(Vector2 newLookDirection)
+        public void FireInput(bool newFireState)
+        {
+            Fire = newFireState;
+        }
+        public void AimInput(bool newAimState)
+        {
+            Aim = newAimState;
+        }
+
+        public void LookInput(Vector2 newLookDirection)
 		{
 			look = newLookDirection;
 		}
