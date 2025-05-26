@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void initializeGame()
     {
-        levelManager.LoadLevelAdditively("SimpleLeve");
+        levelManager.LoadLevelAdditively("SimpleLevel");
         characterManager.SpawnCharacter();
     }
     
