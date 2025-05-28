@@ -13,4 +13,6 @@ public class Charactermanager : MonoBehaviour
         Vector3 spawnPosition = Vector3.zero;
         Instantiate(characterPrefab, spawnPosition, Quaternion.identity, transform);
     }
+
+    
 }

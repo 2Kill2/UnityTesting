@@ -32,7 +32,8 @@ namespace AlexScripts
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
-		}
+			Debug.Log("MoveInput: " + value.Get<Vector2>());
+        }
 
 
 

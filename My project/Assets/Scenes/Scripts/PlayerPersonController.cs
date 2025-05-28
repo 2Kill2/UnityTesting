@@ -134,10 +134,18 @@ namespace AlexScripts
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
+            Debug.Log("PlayerPersonController Awake called on " + gameObject.name);
+
         }
 
         private void Start()
         {
+
+
+
+            Debug.Log("PlayerPersonController started");
+
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -148,11 +156,29 @@ namespace AlexScripts
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
+            if (_input == null)
+            {
+                _input = GetComponent<PlayerInputScript>();
+                if (_input == null)
+                {
+                    Debug.LogError("PlayerInputScript component not found!");
+                }
+                else
+                {
+                    Debug.Log("PlayerInputScript assigned successfully.");
+                }
+            }
+
             AssignAnimationIDs();
 
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            if (_input == null)
+            {
+                Debug.LogError("PlayerInputScript is not assigned. Please assign it in the inspector.");
+            }
         }
 
         private void Update()
@@ -223,6 +249,11 @@ namespace AlexScripts
         */
         private void Move()
         {
+            if (_input == null)
+            {
+                Debug.LogError("PlayerInputScript is not assigned. Please assign it in the inspector.");
+                return;
+            }
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
