@@ -126,6 +126,7 @@ namespace AlexScripts
             }
         }
 
+        
 
         private void Awake()
         {
@@ -136,6 +137,15 @@ namespace AlexScripts
             }
 
             Debug.Log("PlayerPersonController Awake called on " + gameObject.name);
+
+            if (_input == null)
+            {
+                _input = GetComponent<PlayerInputScript>();
+                if (_input == null)
+                {
+                    Debug.Log("PlayerInputScript component not found on " + gameObject.name + "! Please assign it in the inspector.");
+                }
+            }
 
         }
 
