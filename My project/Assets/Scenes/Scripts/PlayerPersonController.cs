@@ -236,7 +236,7 @@ namespace AlexScripts
             {
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-                float sensitivityMultiplier = _input.GetAimState() ? .5f : 1f;
+                float sensitivityMultiplier = _input.OnAim() ? .5f : 1f;
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
                 _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }

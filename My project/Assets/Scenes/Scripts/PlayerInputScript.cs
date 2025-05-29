@@ -15,7 +15,7 @@ namespace AlexScripts
 		private bool Aim;
 		public bool Fire;
 
-	public bool GetAimState()
+	public bool OnAim()
         {
             
             return Aim;
@@ -35,11 +35,16 @@ namespace AlexScripts
 			Debug.Log("MoveInput: " + value.Get<Vector2>());
         }
 
-
-
-		public void OnAim(InputValue value)
+		public void OnFire(InputValue value)
         {
-            AimInput(value.isPressed);
+            FireInput(value.isPressed);
+            Debug.Log("FireInput: " + value.isPressed);
+        }
+
+        public void OnAim(InputValue value)
+        {
+            OnAim(value.isPressed);
+			Debug.Log("AimInput: " + value.isPressed);
         }
         public void OnLook(InputValue value)
 		{
@@ -70,7 +75,7 @@ namespace AlexScripts
         {
             Fire = newFireState;
         }
-        public void AimInput(bool newAimState)
+        public void OnAim(bool newAimState)
         {
             Aim = newAimState;
         }

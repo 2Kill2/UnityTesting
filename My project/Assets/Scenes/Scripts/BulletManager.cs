@@ -16,7 +16,7 @@ namespace AlexScripts
 
         private void Update()
         {
-            if (Inputs.GetAimState() && Inputs.Fire)
+            if (Inputs.OnAim() && Inputs.Fire)
             {
                 OnFirePressed();
             }
