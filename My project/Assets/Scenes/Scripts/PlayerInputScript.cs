@@ -15,9 +15,17 @@ namespace AlexScripts
 		private bool Aim;
 		public bool Fire;
 
-	public bool OnAim()
+        void Update()
         {
-            
+            if (Mouse.current.rightButton.wasPressedThisFrame)
+            {
+                Debug.Log("Right mouse button pressed - raw input detected");
+            }
+        }
+
+        public bool OnAim()
+        {
+
             return Aim;
         }
 
@@ -32,7 +40,7 @@ namespace AlexScripts
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
-			Debug.Log("MoveInput: " + value.Get<Vector2>());
+			//Debug.Log("MoveInput: " + value.Get<Vector2>());
         }
 
 		public void OnFire(InputValue value)
@@ -43,7 +51,7 @@ namespace AlexScripts
 
         public void OnAim(InputValue value)
         {
-            OnAim(value.isPressed);
+            AimInput(value.isPressed);
 			Debug.Log("AimInput: " + value.isPressed);
         }
         public void OnLook(InputValue value)
@@ -75,7 +83,7 @@ namespace AlexScripts
         {
             Fire = newFireState;
         }
-        public void OnAim(bool newAimState)
+        public void AimInput(bool newAimState)
         {
             Aim = newAimState;
         }

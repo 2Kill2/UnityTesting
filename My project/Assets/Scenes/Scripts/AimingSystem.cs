@@ -10,22 +10,19 @@ namespace AlexScripts
     public class AimingSystem : MonoBehaviour
     {
         [SerializeField] private Camera cam;
-
-        public PlayerInputScript Input;
-
+        [SerializeField] private float aimFOV = 30f;
+        [SerializeField] private float normalFOV = 60f;
+        [SerializeField] private float smoothSpeed = 10f;
         private void Update()
         {
-            if (Input.OnAim())
-            {
-                cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 30f, Time.deltaTime * 10f);
-            }
-            else
-            {
-                cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, Time.deltaTime * 10f);
-            }
+            bool isAiming = Input.GetMouseButton(1);
+            float targetFOV = isAiming ? aimFOV : normalFOV;
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * smoothSpeed);
+            //Debug.Log("Current FOV: " + cam.fieldOfView);
+
         }
 
-      
+
 
     }
 
