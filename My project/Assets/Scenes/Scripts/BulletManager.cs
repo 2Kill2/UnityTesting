@@ -10,14 +10,23 @@ namespace AlexScripts
     {
         [SerializeField] private Camera Cam;
 
-        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private PhysicsBullet PhysicsBullet;
+        [SerializeField] private RaycastBullet BulletParticle;
 
         [SerializeField] private PlayerInputScript Inputs;
+        [SerializeField] private LayerMask RaycastMask;
 
-        [SerializeField] private float FireRate = 0.2f;
+        [SerializeField] private ShootType ShootingCalculation;
+        
+        public enum ShootType
+        {
+            Raycast = 0, 
+            Physics = 1
+        }
 
         private void Update()
         {
+            //change to new input system
             if (Input.GetMouseButton(0) && Input.GetMouseButton(1))
             {
                 OnFirePressed();
@@ -29,17 +38,60 @@ namespace AlexScripts
 
         private void OnFirePressed()
         {
-            Vector3 direction = Cam.transform.forward;
-            FireWait();
-            Instantiate(bulletPrefab, Cam.transform.position, Cam.transform.rotation);
+
+            switch (ShootingCalculation)
+            {
+                case ShootType.Raycast:
+                    DoRaycast();
+                    break;
+                case ShootType.Physics:
+                    SpawnPhysicsBullet();
+                    break;
+                default:
+                    Debug.LogError("Invalid shooting calculation type selected.");
+                    break;
+            }
+
+        }
+        
+        private void SpawnPhysicsBullet()
+        {
+            // does not call collision until physics system collides
+            PhysicsBullet spawnedBullet = Instantiate(PhysicsBullet, Cam.transform.position, Cam.transform.rotation);
+            spawnedBullet.Initialize(this);
         }
 
-        private void FireWait()
+        private void DoRaycast()
         {
-            // Implement fire rate logic here if needed
-            // For example, you can use a coroutine to manage the firing rate
-            // or simply use a timer to prevent firing too frequently.
-            WaitForSeconds wait = new WaitForSeconds(FireRate);
+            LayerMask layerMask = LayerMask.GetMask("Wall", "Player");
+
+            if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, Mathf.Infinity, RaycastMask))
+            {
+
+                OnProjectileCollision(hit.point, hit.normal);
+            }
+            
+        }
+
+        private void OnProjectileCollision(Vector3 position, Vector3 rotation)
+        {
+
+            
+            SpawnParticle(position, rotation);
+        }
+
+        private void SpawnParticle(Vector3 position, Vector3 rotation)
+        {
+            Instantiate(BulletParticle, position, Quaternion.Euler(rotation));
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawLine(Cam.transform.position, Cam.transform.position + Cam.transform.forward * 100f);
+        }
+        private void CleanupParticle()
+        {
+
         }
 
     }
