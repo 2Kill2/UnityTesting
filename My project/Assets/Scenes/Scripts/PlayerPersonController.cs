@@ -79,6 +79,7 @@ namespace AlexScripts
         [Header("Input System Handler")]
         [Tooltip("Sets values from the input system")]
         [SerializeField] private PlayerInputScript _input;
+        [SerializeField] private GameObject CameraTarget;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -126,7 +127,12 @@ namespace AlexScripts
             }
         }
 
-        
+        public void AimingCheck()
+        {
+            CameraTarget.SetActive(_input.Aim);
+          
+
+        }
 
         private void Awake()
         {
@@ -198,6 +204,7 @@ namespace AlexScripts
             JumpAndGravity();
             GroundedCheck();
             Move();
+            AimingCheck();
         }
 
         private void LateUpdate()
@@ -236,7 +243,7 @@ namespace AlexScripts
             {
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-                float sensitivityMultiplier = _input.OnAim() ? .5f : 1f;
+                float sensitivityMultiplier = _input.GetAim() ? .5f : 1f;
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
                 _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }

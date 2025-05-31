@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 #endif
 
 namespace AlexScripts
@@ -12,18 +13,12 @@ namespace AlexScripts
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		private bool Aim;
+		public bool Aim;
 		public bool Fire;
 
-        void Update()
-        {
-            if (Mouse.current.rightButton.wasPressedThisFrame)
-            {
-                Debug.Log("Right mouse button pressed - raw input detected");
-            }
-        }
 
-        public bool OnAim()
+       
+        public bool GetAim()
         {
 
             return Aim;
@@ -52,7 +47,7 @@ namespace AlexScripts
         public void OnAim(InputValue value)
         {
             AimInput(value.isPressed);
-			Debug.Log("AimInput: " + value.isPressed);
+			
         }
         public void OnLook(InputValue value)
 		{
