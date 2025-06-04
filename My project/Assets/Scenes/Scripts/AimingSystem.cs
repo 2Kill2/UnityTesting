@@ -12,10 +12,11 @@ namespace AlexScripts
         [SerializeField] private Camera cam;
         [SerializeField] private GameObject CameraTarget;
         [SerializeField] private Animator animator; // Added Animator reference  
+        [SerializeField] private PlayerInputScript Inputs; // Added PlayerInput reference
 
         private void Update()
         {
-            bool isAiming = Input.GetMouseButton(1);
+            bool isAiming = Inputs.Aim;
             CameraTarget.SetActive(isAiming);
 
             if (isAiming)

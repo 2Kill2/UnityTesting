@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectileSpeed: 100
-  ProjectileDamage: 0
+  ProjectileDamage: 1
   rb: {fileID: 6012617595622244673}
 --- !u!54 &6012617595622244673
 Rigidbody:

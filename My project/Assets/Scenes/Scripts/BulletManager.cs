@@ -8,6 +8,7 @@ namespace AlexScripts
 
     public class BulletManager : MonoBehaviour
     {
+        
         [SerializeField] private Camera Cam;
 
         [SerializeField] private PhysicsBullet PhysicsBullet;
@@ -27,10 +28,10 @@ namespace AlexScripts
         private void Update()
         {
             //change to new input system
-            if (Input.GetMouseButton(0) && Input.GetMouseButton(1))
+            if (Inputs.Aim && Inputs.Fire)
             {
                 OnFirePressed();
-                Debug.Log("Fire pressed: " + Inputs.Fire);
+                //Debug.Log("Fire pressed: " + Inputs.Fire);
             }
             Inputs.Fire = false;
 
@@ -68,12 +69,12 @@ namespace AlexScripts
             if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, Mathf.Infinity, RaycastMask))
             {
 
+                Debug.Log("Hit: " + hit.collider.name);
                 OnProjectileCollision(hit.point, hit.normal);
             }
-            
         }
 
-        private void OnProjectileCollision(Vector3 position, Vector3 rotation)
+        public void OnProjectileCollision(Vector3 position, Vector3 rotation)
         {
 
             
@@ -84,6 +85,8 @@ namespace AlexScripts
         {
             Instantiate(BulletParticle, position, Quaternion.Euler(rotation));
         }
+
+
 
         private void OnDrawGizmos()
         {

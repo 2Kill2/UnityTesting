@@ -7,6 +7,7 @@ namespace AlexScripts
 
     public class PhysicsBullet : MonoBehaviour
     {
+        [SerializeField] HealthSystem healthSystem;
         [SerializeField] float ProjectileSpeed;
         [SerializeField] float ProjectileDamage;
         [SerializeField] Rigidbody rb;
@@ -19,6 +20,7 @@ namespace AlexScripts
 
         void Start()
         {
+            GetComponent<HealthSystem>();
             rb.AddForce(transform.forward * ProjectileSpeed, ForceMode.Impulse);
         }
 
@@ -26,7 +28,26 @@ namespace AlexScripts
         {
             ContactPoint contact = collision.GetContact(0);
             bulletManager.OnProjectileCollision(contact.point, contact.normal);
+
+            applyDamage(collision.gameObject);
+
+
+
             Destroy(gameObject);
+        }
+
+        private void applyDamage(GameObject target)
+        {
+
+            HealthSystem targetHealth = target.GetComponent<HealthSystem>();
+            if (targetHealth != null)
+            {
+                targetHealth.TakeDamage(ProjectileDamage);
+            }
+            else
+            {
+                Debug.LogWarning("Target does not have a HealthSystem component.");
+            }
         }
 
     }
