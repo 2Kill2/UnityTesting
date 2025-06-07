@@ -15,7 +15,7 @@ namespace AlexScripts
         [SerializeField] private RaycastBullet BulletParticle;
 
         [SerializeField] private PlayerInputScript Inputs;
-        [SerializeField] private LayerMask RaycastMask;
+        [SerializeField] public LayerMask RaycastMask;
 
         [SerializeField] private ShootType ShootingCalculation;
         
@@ -64,13 +64,16 @@ namespace AlexScripts
 
         private void DoRaycast()
         {
-            LayerMask layerMask = LayerMask.GetMask("Wall", "Player");
+            
+            LayerMask layerMask = LayerMask.GetMask("Wall", "Player", "Camera");
 
             if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, Mathf.Infinity, RaycastMask))
             {
-
+                RaycastBullet raycastBullet = Instantiate(BulletParticle, hit.point, Quaternion.LookRotation(hit.normal));
+                raycastBullet.Initialize(this);
                 Debug.Log("Hit: " + hit.collider.name);
                 OnProjectileCollision(hit.point, hit.normal);
+                raycastBullet.TargetObject(hit.transform.gameObject);
             }
         }
 

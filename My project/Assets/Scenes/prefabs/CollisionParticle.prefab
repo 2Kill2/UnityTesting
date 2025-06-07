@@ -4944,3 +4944,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParticleSystem: {fileID: 4048021105482158870}
   Lifetime: 3
+  damage: 1

@@ -39,7 +39,7 @@ namespace AlexScripts
         private void applyDamage(GameObject target)
         {
 
-            HealthSystem targetHealth = target.GetComponent<HealthSystem>();
+            var targetHealth = target.GetComponent<HealthSystem>();
             if (targetHealth != null)
             {
                 targetHealth.TakeDamage(ProjectileDamage);

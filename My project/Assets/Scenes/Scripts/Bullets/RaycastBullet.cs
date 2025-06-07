@@ -7,13 +7,19 @@ namespace AlexScripts
     {
         [SerializeField] private ParticleSystem ParticleSystem;
         [SerializeField] private float Lifetime;
+        [SerializeField] private float damage;
+        private BulletManager bulletManager;
         private float _timer;
-        // Start is called before the first frame update
-        void Start()
-        {
 
+        public void Initialize(BulletManager manager)
+        {
+            bulletManager = manager;
         }
 
+        private void Start()
+        {
+            GetComponent<HealthSystem>();
+        }
         // Update is called once per frame
         void Update()
         {
@@ -26,6 +32,24 @@ namespace AlexScripts
             {
                 Destroy(gameObject);
             }
+            
         }
+
+        public void TargetObject(GameObject target)
+        {
+
+            var targetHealth = target.GetComponent<HealthSystem>();
+            if (targetHealth != null)
+            {
+                targetHealth.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("Target does not have a HealthSystem component.");
+            }
+        }
+        
+
     }
+
 }
