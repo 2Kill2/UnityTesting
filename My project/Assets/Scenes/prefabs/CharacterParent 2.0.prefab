@@ -2314,6 +2314,7 @@ GameObject:
   - component: {fileID: 2360062898845741701}
   - component: {fileID: 6256763275412466166}
   - component: {fileID: 4560887654743152926}
+  - component: {fileID: 2676035247692300742}
   - component: {fileID: 4334487192710810505}
   - component: {fileID: 2203282515145059811}
   - component: {fileID: 2497076676355456927}
@@ -2492,14 +2493,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb14961532e99a447851fe8405b9ed70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  physicsBullet: {fileID: 1784215738756742937, guid: c5a2db57fc0fc8141bf35209310cdb42, type: 3}
+  BulletParticle: {fileID: 4348035704106646157, guid: 4a8c2bc2c50587a4ea76f0cf42d6a9ee, type: 3}
   Cam: {fileID: 6805483315381446196}
   PhysicsBullet: {fileID: 1784215738756742937, guid: c5a2db57fc0fc8141bf35209310cdb42, type: 3}
-  BulletParticle: {fileID: 4348035704106646157, guid: 4a8c2bc2c50587a4ea76f0cf42d6a9ee, type: 3}
   Inputs: {fileID: 6256763275412466166}
   RaycastMask:
     serializedVersion: 2
     m_Bits: 119
   ShootingCalculation: 1
+--- !u!114 &2676035247692300742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108651276086594703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd40e2cfc90d49445bb7a6a658951cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  physicsBullet: {fileID: 1784215738756742937, guid: c5a2db57fc0fc8141bf35209310cdb42, type: 3}
+  BulletParticle: {fileID: 4348035704106646157, guid: 4a8c2bc2c50587a4ea76f0cf42d6a9ee, type: 3}
 --- !u!114 &4334487192710810505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2564,6 +2580,7 @@ MonoBehaviour:
   cam: {fileID: 6805483315381446196}
   CameraTarget: {fileID: 809773592055860629}
   animator: {fileID: 1904695168604178780}
+  Inputs: {fileID: 6256763275412466166}
 --- !u!1 &9113464907541245610
 GameObject:
   m_ObjectHideFlags: 0

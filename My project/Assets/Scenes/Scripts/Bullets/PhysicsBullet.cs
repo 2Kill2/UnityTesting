@@ -11,9 +11,9 @@ namespace AlexScripts
         [SerializeField] float ProjectileSpeed;
         [SerializeField] float ProjectileDamage;
         [SerializeField] Rigidbody rb;
-        private BulletManager bulletManager;
+        private BaseBulletManager bulletManager;
 
-        public void Initialize(BulletManager manager)
+        public void Initialize(BaseBulletManager manager)
         {
             bulletManager = manager;
         }

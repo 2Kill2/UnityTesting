@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using AlexScripts;
 using UnityEngine;
 
-namespace AlexScripts
-{
 
-    public class BulletManager : MonoBehaviour
+
+    public class BulletManager : BaseBulletManager
     {
         
         [SerializeField] private Camera Cam;
 
         [SerializeField] private PhysicsBullet PhysicsBullet;
-        [SerializeField] private RaycastBullet BulletParticle;
 
         [SerializeField] private PlayerInputScript Inputs;
         [SerializeField] public LayerMask RaycastMask;
@@ -46,7 +44,7 @@ namespace AlexScripts
                     DoRaycast();
                     break;
                 case ShootType.Physics:
-                    SpawnPhysicsBullet();
+                    SpawnPhysicsBullet(Cam.transform);
                     break;
                 default:
                     Debug.LogError("Invalid shooting calculation type selected.");
@@ -55,12 +53,7 @@ namespace AlexScripts
 
         }
         
-        private void SpawnPhysicsBullet()
-        {
-            // does not call collision until physics system collides
-            PhysicsBullet spawnedBullet = Instantiate(PhysicsBullet, Cam.transform.position, Cam.transform.rotation);
-            spawnedBullet.Initialize(this);
-        }
+
 
         private void DoRaycast()
         {
@@ -77,12 +70,7 @@ namespace AlexScripts
             }
         }
 
-        public void OnProjectileCollision(Vector3 position, Vector3 rotation)
-        {
-
-            
-            SpawnParticle(position, rotation);
-        }
+        
 
         private void SpawnParticle(Vector3 position, Vector3 rotation)
         {
@@ -101,4 +89,4 @@ namespace AlexScripts
         }
 
     }
-}
+
