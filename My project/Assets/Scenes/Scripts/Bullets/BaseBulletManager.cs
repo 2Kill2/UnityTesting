@@ -9,11 +9,21 @@ public class BaseBulletManager : MonoBehaviour
     [SerializeField] private PhysicsBullet physicsBullet;
     [Header("Particle")]
     [SerializeField] protected RaycastBullet BulletParticle;
+    [Header("Enemy Bullet")]
+    [SerializeField] protected enemyBullet enemyBullet;
 
     protected void SpawnPhysicsBullet(Transform shootersTransform)
     {
         // does not call collision until physics system collides
         PhysicsBullet spawnedBullet = Instantiate(physicsBullet, shootersTransform.transform.position, shootersTransform.transform.rotation);
+        spawnedBullet.Initialize(this);
+    }
+
+
+    protected void SpawnEnemyBullet(Transform shootersTransform)
+    {
+        // does not call collision until physics system collides
+        enemyBullet spawnedBullet = Instantiate(enemyBullet, shootersTransform.transform.position, shootersTransform.transform.rotation);
         spawnedBullet.Initialize(this);
     }
 

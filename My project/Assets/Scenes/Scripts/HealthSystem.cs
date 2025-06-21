@@ -10,22 +10,52 @@ namespace AlexScripts
     {
         [SerializeField] private float maxHealth = 100f;
         [SerializeField] private float currentHealth;
-        private void Awake()
+        [SerializeField] private Color defaultcolor;
+        [SerializeField] private AudioClip hitSound;
+        [SerializeField] private ParticleSystem deathEffect;
+        private void Start()
         {
             currentHealth = maxHealth;
+            defaultcolor = gameObject.GetComponent<Renderer>().material.color;
         }
-        public void TakeDamage(float amount)
+
+        private void Update()
         {
-            currentHealth -= amount;
             if (currentHealth <= 0)
             {
                 Die();
             }
         }
+        public void TakeDamage(float amount)
+        {
+            currentHealth -= amount;
+            hitflash();
+            //activate hit marker & sound
+            AudioClip.Create("HitSound", hitSound.samples, hitSound.channels, hitSound.frequency, false);
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void hitflash() 
+        {
+            //make flash red
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            //wait 0.1 seconds
+            StartCoroutine(ResetColor());
+        }
+
+        private IEnumerator ResetColor()
+        {
+            yield return new WaitForSeconds(0.1f);
+            gameObject.GetComponent<Renderer>().material.color = defaultcolor;
+        }
         private void Die()
         {
-            // Handle death logic here, e.g., play animation, destroy object, etc.
+            ParticleSystem effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            //make a puff of smoke, maybe they fall down or smth
         }
         public float GetCurrentHealth()
         {
