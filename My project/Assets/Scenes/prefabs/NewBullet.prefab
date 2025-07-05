@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7212505775389468040}
   - component: {fileID: 1784215738756742937}
   - component: {fileID: 6012617595622244673}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NewBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036cb27c968060b4d9595439eded3fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSystem: {fileID: 0}
   ProjectileSpeed: 100
   ProjectileDamage: 1
   rb: {fileID: 6012617595622244673}

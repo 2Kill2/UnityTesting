@@ -13,6 +13,7 @@ namespace AlexScripts
         [SerializeField] private Color defaultcolor;
         [SerializeField] private AudioClip hitSound;
         [SerializeField] private ParticleSystem deathEffect;
+        [SerializeField] private AudioClip DieSound; 
         private void Start()
         {
             currentHealth = maxHealth;
@@ -31,7 +32,7 @@ namespace AlexScripts
             currentHealth -= amount;
             hitflash();
             //activate hit marker & sound
-            AudioClip.Create("HitSound", hitSound.samples, hitSound.channels, hitSound.frequency, false);
+            //AudioSource.PlayOneShot(hitSound);
             if (currentHealth <= 0)
             {
                 Die();
@@ -53,6 +54,8 @@ namespace AlexScripts
         }
         private void Die()
         {
+
+            //AudioSource.PlayOneShot(DieSound);
             ParticleSystem effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
             //make a puff of smoke, maybe they fall down or smth

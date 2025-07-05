@@ -21,17 +21,25 @@ public class AIPlayerController : MonoBehaviour
 
     //vision
 
-    [SerializeField] private float VisionRange = 10f;
-    [SerializeField] private float VisionAngle = 45f; // in degrees
+    //[SerializeField] private float VisionRange = 10f;
+    //[SerializeField] private float VisionAngle = 45f; // in degrees
     [SerializeField] private LayerMask VisionLayers;
     [SerializeField] private EnemyBulletManager ebs;
 
+    [SerializeField] protected AudioSource DetectSource;
+    [SerializeField] protected AudioClip DetectSound;
+
     private int _currentHp;
+    private float _currentCooldown;
+    private float _ChaseDuration;
 
     private void Start()
     {
         //_currentHp = MaxHp;
         Patrol();
+        CanFire = true;
+        _currentCooldown = FireCooldown;
+        _ChaseDuration = ChaseDuration;
     }
 
     /*private void OnCollisionEnter(Collision collision)
@@ -53,9 +61,16 @@ public class AIPlayerController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 pos = Vector3.down; 
+        Vector3 pos = Vector3.down;
         // Check if player is in vision range and angle
         FindTarget();
+        _currentCooldown -= Time.deltaTime;
+        if (_currentCooldown <= 0)
+        {
+            CanFire = true;
+            Debug.Log("CanFire Set True");
+
+        }
     }
     private void Patrol()
     {
@@ -83,23 +98,24 @@ public class AIPlayerController : MonoBehaviour
     public LayerMask layerMask;
     private void FindTarget()
     {
-        Debug.DrawRay(transform.position, PlayerLocatorSingleton.Instance.transform.position - transform.position + new Vector3(0f,1f, 0f), Color.red, 0.1f);
+        Debug.Log("FindTarget Called");
+        Debug.DrawRay(transform.position, PlayerLocatorSingleton.Instance.transform.position - transform.position + new Vector3(0f, 1f, 0f), Color.red, 0.1f);
         if (Physics.Raycast(transform.position, PlayerLocatorSingleton.Instance.transform.position - transform.position + new Vector3(0f, 1f, 0f), out RaycastHit hit))
         {
             Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
             // Check if the hit object is the player
             if (hit.collider.gameObject == PlayerLocatorSingleton.Instance.gameObject)
             {
-
-                // Player is within vision range and angle
+                if (CanFire)
+                {
+                    ShootingRoutine();
+                    CanFire = false;
+                    _currentCooldown = FireCooldown;
+                }
                 Debug.Log("Player detected!");
-                // Implement logic to engage the player
-                Chase();
                 GetComponent<Renderer>().material.color = Color.yellow;
-                StartCoroutine(ShootingRoutine());
-                //ebs.Fire(PlayerLocatorSingleton.Instance.transform.position);
+                Chase();
             }
-
             else
             {
                 Debug.Log("Player out of angle range");
@@ -108,19 +124,48 @@ public class AIPlayerController : MonoBehaviour
             }
         }
     }
-        
-    private IEnumerator ShootingRoutine()
+
+    private bool CanFire;
+    private float FireCooldown = 1f;
+    private void CoolDown()
     {
-        // Wait for 1 second before shooting again
-        yield return new WaitForSeconds(1f);
+        
+        if (_currentCooldown <= 0)
+        {
+            CanFire = true;
+            Debug.Log("CanFire Set True");
+        }
+    }
+    
+
+
+    private void ShootingRoutine()
+    {
         // Fire the bullet
         ebs.Fire(PlayerLocatorSingleton.Instance.transform.position);
+        Debug.Log("Fired from ShootingRoutine");
     }
+
+    private float ChaseDuration = 3f;
 
     private void Chase()
     {
-        // move to player for 3 seconds
         agent.SetDestination(PlayerLocatorSingleton.Instance.transform.position);
+        DetectSource.PlayOneShot(DetectSound);
+        // move to player for 3 seconds
+        // if ChaseDuration <= 0, return;
+        /*if (_ChaseDuration > 0)
+        {
+            agent.SetDestination(PlayerLocatorSingleton.Instance.transform.position);
+            GetComponent<Renderer>().material.color = Color.yellow;
+            _ChaseDuration -= Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("Chase ended");
+            return;
+        }*/
+
     }
 
 }

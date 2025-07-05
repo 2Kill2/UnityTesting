@@ -12,8 +12,7 @@ public class EnemyBulletManager : BaseBulletManager
     [SerializeField] private ShootType ShootingCalculation;
 
     public enum ShootType
-    {
-        
+    { 
         Physics = 0
     }
     public void Fire(Vector3 Target)

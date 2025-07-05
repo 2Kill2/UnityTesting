@@ -9,14 +9,25 @@ public class BaseBulletManager : MonoBehaviour
     [SerializeField] private PhysicsBullet physicsBullet;
     [Header("Particle")]
     [SerializeField] protected RaycastBullet BulletParticle;
+    [SerializeField] protected ParticleSystem muzzleFlash;
     [Header("Enemy Bullet")]
     [SerializeField] protected enemyBullet enemyBullet;
+    [Header("Sound effect")]
+    [SerializeField] protected AudioSource ShootingSource;
+    [SerializeField] protected AudioClip ShootingSound;
+
 
     protected void SpawnPhysicsBullet(Transform shootersTransform)
     {
         // does not call collision until physics system collides
         PhysicsBullet spawnedBullet = Instantiate(physicsBullet, shootersTransform.transform.position, shootersTransform.transform.rotation);
         spawnedBullet.Initialize(this);
+
+        ShootingSource.PlayOneShot(ShootingSound);
+
+        // Spawn muzzle flash effect
+        //Instantiate(muzzleFlash, shootersTransform.position, shootersTransform.rotation);
+        // adding this code makes player (ONLY PLAYER) shoot bullets with no cooldown, WTF.
     }
 
 
@@ -25,6 +36,10 @@ public class BaseBulletManager : MonoBehaviour
         // does not call collision until physics system collides
         enemyBullet spawnedBullet = Instantiate(enemyBullet, shootersTransform.transform.position, shootersTransform.transform.rotation);
         spawnedBullet.Initialize(this);
+
+        ShootingSource.PlayOneShot(ShootingSound);
+        // Add muzzleflash here
+        Instantiate(muzzleFlash, ShootingSource.transform.position, ShootingSource.transform.rotation);
     }
 
     public void OnProjectileCollision(Vector3 position, Vector3 rotation)
