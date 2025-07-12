@@ -10,19 +10,13 @@ using Unity.AI;
 
 using UnityEngine.AI;
 
-public class AIPlayerController : MonoBehaviour
+public abstract class AIPlayerController : MonoBehaviour
 {
     [SerializeField] private Transform waypointA;
     [SerializeField] private Transform waypointB;
-    [SerializeField] NavMeshAgent agent;
+    [SerializeField] protected NavMeshAgent agent;
     [SerializeField] private PlayerLocatorSingleton playerLocator;
 
-    //[SerializeField] private LayerMask DamageLayers;
-
-    //vision
-
-    //[SerializeField] private float VisionRange = 10f;
-    //[SerializeField] private float VisionAngle = 45f; // in degrees
     [SerializeField] private LayerMask VisionLayers;
     [SerializeField] private EnemyBulletManager ebs;
 
@@ -39,25 +33,7 @@ public class AIPlayerController : MonoBehaviour
         Patrol();
         CanFire = true;
         _currentCooldown = FireCooldown;
-        _ChaseDuration = ChaseDuration;
     }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.layer == DamageLayers)
-        {
-            Debug.Log("Ai hit by bullet");
-            _currentHp--;
-            OnDamageTaken();
-        }
-    }*/
-
-    /*private void OnDamageTaken()
-    {
-        float currentHpPercent = (float)_currentHp / MaxHp;
-        HealthDisplay.UpdateHP(currentHpPercent);
-    }*/
 
     private void Update()
     {
@@ -115,6 +91,12 @@ public class AIPlayerController : MonoBehaviour
                 Debug.Log("Player detected!");
                 GetComponent<Renderer>().material.color = Color.yellow;
                 Chase();
+                //if too close do RunAway
+                float distanceToPlayer = Vector3.Distance(transform.position, PlayerLocatorSingleton.Instance.transform.position);
+                if (distanceToPlayer < 2)
+                {
+                    RunAway();
+                }
             }
             else
             {
@@ -146,27 +128,10 @@ public class AIPlayerController : MonoBehaviour
         Debug.Log("Fired from ShootingRoutine");
     }
 
-    private float ChaseDuration = 3f;
+    protected abstract void Chase();
 
-    private void Chase()
-    {
-        agent.SetDestination(PlayerLocatorSingleton.Instance.transform.position);
-        DetectSource.PlayOneShot(DetectSound);
-        // move to player for 3 seconds
-        // if ChaseDuration <= 0, return;
-        /*if (_ChaseDuration > 0)
-        {
-            agent.SetDestination(PlayerLocatorSingleton.Instance.transform.position);
-            GetComponent<Renderer>().material.color = Color.yellow;
-            _ChaseDuration -= Time.deltaTime;
-        }
-        else
-        {
-            Debug.Log("Chase ended");
-            return;
-        }*/
-
-    }
+    //Sniper things
+    protected abstract void RunAway();
 
 }
 
