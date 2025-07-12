@@ -1268,11 +1268,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 89.995, z: 0}
---- !u!82 &345434055 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2265771053289883846, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
-  m_PrefabInstance: {fileID: 956342285}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &380845897
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,10 +3214,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 684276758767749658, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3335056336044856079, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12
@@ -3262,28 +3253,6 @@ PrefabInstance:
     - target: {fileID: 3335056336044856079, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754751941970253546, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
-      propertyPath: DieSound
-      value: 
-      objectReference: {fileID: 8300000, guid: d7068fac52ab94f43a8fa443a0eafad6, type: 3}
-    - target: {fileID: 3754751941970253546, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
-      propertyPath: maxHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754751941970253546, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 345434055}
-    - target: {fileID: 5984392475000492447, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
-      propertyPath: m_text
-      value: 'You Died
-
-
-        Press FIRE to go back to menu
-
-        Press AIM
-        to restart the level'
       objectReference: {fileID: 0}
     - target: {fileID: 6169808410578290968, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
       propertyPath: m_Name

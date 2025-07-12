@@ -64,8 +64,8 @@ namespace AlexScripts
             //AudioSource.PlayOneShot(DieSound);
             ParticleSystem effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
 
-            GetComponent<Rigidbody>().isKinematic = true; //stop player from moving
-            GetComponent<MeshRenderer>().enabled = false; //hide player mesh, this does not work because the script is attached to the player object, not the mesh renderer
+           // GetComponent<Rigidbody>().isKinematic = true; //stop player from moving
+            //GetComponent<MeshRenderer>().enabled = false; //hide player mesh, this does not work because the script is attached to the player object, not the mesh renderer
             
             deathScreen.gameObject.SetActive(true);
 
@@ -82,6 +82,7 @@ namespace AlexScripts
             }
             //stop time
             //Time.timeScale = 0f; //pause the game
+            Destroy(gameObject); //destroy the player object
         }
         public float GetCurrentHealth()
         {
