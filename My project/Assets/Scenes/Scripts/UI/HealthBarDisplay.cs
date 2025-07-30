@@ -6,24 +6,39 @@ using UnityEngine.UI;
 
 public class HealthBarDisplay : MonoBehaviour
 {
-    public float Health, MaxHealth, Width, Height;
+    public float Width = 300f;
+    public float Height = 40f;
+    public float Health, MaxHealth;
 
     [SerializeField] private RectTransform healthBar;
     [SerializeField] private HealthSystem healthSystem;
 
-    public void SetMaxHealth(float maxHealth)
+    private float maxHealth;
+    private void Start()
     {
-        MaxHealth = maxHealth;
+        if (healthSystem == null)
+        {
+            healthSystem = GetComponent<HealthSystem>();
+        }
+        maxHealth = healthSystem.GetMaxHealth();
     }
 
-    public void SetHealth(float health)
+    private void Update()
     {
-        Health = health;
-        float newWidth = Health / MaxHealth * Width;
-
-        healthBar.sizeDelta = new Vector2(newWidth, Height);
+        if (healthSystem != null)
+        {
+            Health = healthSystem.GetCurrentHealth();
+            UpdateHealthBar();
+        }
     }
 
-
+    private void UpdateHealthBar()
+    {
+        if (healthBar != null)
+        {
+            float healthPercentage = Health / maxHealth;
+            healthBar.sizeDelta = new Vector2(Width * healthPercentage, Height);
+        }
+    }
 
 }

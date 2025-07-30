@@ -21,6 +21,7 @@ namespace AlexScripts
         private void Start()
         {
             currentHealth = maxHealth;
+
             defaultcolor = gameObject.GetComponent<Renderer>().material.color;
         }
 

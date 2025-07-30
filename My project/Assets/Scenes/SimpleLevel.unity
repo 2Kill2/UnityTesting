@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!223 &23216351 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5263774254164874602, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+  m_PrefabInstance: {fileID: 956342285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &40159079
 GameObject:
   m_ObjectHideFlags: 0
@@ -3643,6 +3648,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 341440707179895020, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.48235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 341440707179895020, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.41509432
+      objectReference: {fileID: 0}
+    - target: {fileID: 341440707179895020, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.41509432
+      objectReference: {fileID: 0}
+    - target: {fileID: 341440707179895020, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.41509432
+      objectReference: {fileID: 0}
     - target: {fileID: 3335056336044856079, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12
@@ -3687,11 +3708,24 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4244400891452311258, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+      propertyPath: healthSystem
+      value: 
+      objectReference: {fileID: 1272641534}
+    - target: {fileID: 4310771377122055757, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6169808410578290968, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
       propertyPath: m_Name
       value: CharacterParent 2.0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8258271616788374567, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3754751941970253546, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8340102610218183531, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
@@ -3700,19 +3734,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8340102610218183531, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2129799560}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9108651276086594703, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1272641534}
   m_SourcePrefab: {fileID: 100100000, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
---- !u!114 &957216047 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 224660798402231640, guid: b254b7ff1cd2578489db5db0f7a6db82, type: 3}
-  m_PrefabInstance: {fileID: 1453334900}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3b0e5933eabfb4085bfad66ea46d59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &980825515
 GameObject:
   m_ObjectHideFlags: 0
@@ -3991,7 +4017,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 859596146839632036, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
   m_PrefabInstance: {fileID: 956342285}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1272641532}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e4292ba141249848b5d8501f1b64cb6, type: 3}
@@ -4439,6 +4465,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce180bf6d4c4e9b47ab2b454eaeeb18d, type: 3}
+--- !u!82 &1195882877 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2265771053289883846, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+  m_PrefabInstance: {fileID: 956342285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1205372006
 GameObject:
   m_ObjectHideFlags: 0
@@ -4450,6 +4481,7 @@ GameObject:
   - component: {fileID: 1205372010}
   - component: {fileID: 1205372009}
   - component: {fileID: 1205372008}
+  - component: {fileID: 1205372012}
   - component: {fileID: 1205372007}
   - component: {fileID: 1205372011}
   m_Layer: 0
@@ -4559,7 +4591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  currentHealth: 0
+  currentHealth: 3
   defaultcolor: {r: 0, g: 0, b: 0, a: 0}
   hitSound: {fileID: 0}
   deathEffect: {fileID: 727762555800450268, guid: 252f00ae48503844cb52a24fdbfa7970, type: 3}
@@ -4567,6 +4599,29 @@ MonoBehaviour:
   deathScreen: {fileID: 0}
   Inputs: {fileID: 0}
   audioSource: {fileID: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1205372012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205372006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed94913418195241a3ef5f77bb45b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  currentHealth: 3
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  hitSound: {fileID: 0}
+  deathEffect: {fileID: 0}
+  DieSound: {fileID: 0}
+  deathScreen: {fileID: 0}
+  Inputs: {fileID: 0}
+  audioSource: {fileID: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1236550497
 GameObject:
   m_ObjectHideFlags: 0
@@ -4607,6 +4662,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d3b0e5933eabfb4085bfad66ea46d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1272641532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9108651276086594703, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+  m_PrefabInstance: {fileID: 956342285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1272641534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272641532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691e8d46eef761a41a6410b3eb6f520e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 20
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  hitSound: {fileID: 8300000, guid: 1c03df91c62ea2a40bae07e775fa6711, type: 3}
+  deathEffect: {fileID: 727762555800450268, guid: 252f00ae48503844cb52a24fdbfa7970, type: 3}
+  DieSound: {fileID: 0}
+  deathScreen: {fileID: 23216351}
+  Inputs: {fileID: 1272641541}
+  audioSource: {fileID: 1195882877}
+--- !u!114 &1272641541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6256763275412466166, guid: 0a55e10f6abbd1b4cab985f46be4d86a, type: 3}
+  m_PrefabInstance: {fileID: 956342285}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272641532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90ec99112d3fd544b99c96bb0f9ceda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1330178723
@@ -5008,10 +5100,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -1255177124759582709, guid: b254b7ff1cd2578489db5db0f7a6db82, type: 3}
-      propertyPath: ebs
-      value: 
-      objectReference: {fileID: 957216047}
-    - target: {fileID: -1255177124759582709, guid: b254b7ff1cd2578489db5db0f7a6db82, type: 3}
       propertyPath: waypointA
       value: 
       objectReference: {fileID: 561715326}
@@ -5067,10 +5155,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7023195922081661590, guid: b254b7ff1cd2578489db5db0f7a6db82, type: 3}
-      propertyPath: playerLocator
-      value: 
-      objectReference: {fileID: 1022610752}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6008,6 +6092,7 @@ MonoBehaviour:
   deathScreen: {fileID: 0}
   Inputs: {fileID: 0}
   audioSource: {fileID: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1661197411
 GameObject:
   m_ObjectHideFlags: 0
@@ -7741,7 +7826,6 @@ SceneRoots:
   - {fileID: 1917867351}
   - {fileID: 756854391}
   - {fileID: 994341021}
-  - {fileID: 1205372010}
   - {fileID: 561715326}
   - {fileID: 1236550498}
   - {fileID: 1567319710}
@@ -7755,5 +7839,6 @@ SceneRoots:
   - {fileID: 1453334900}
   - {fileID: 940693117}
   - {fileID: 422665457}
+  - {fileID: 1205372010}
   - {fileID: 1610522142}
   - {fileID: 1647789987}

@@ -57,7 +57,8 @@ namespace AlexScripts
             }
             else
             {
-                Debug.LogWarning("Target does not have a HealthSystem component.");
+                return;
+                //Debug.LogWarning("Target does not have a HealthSystem component.");
             }
         }
 

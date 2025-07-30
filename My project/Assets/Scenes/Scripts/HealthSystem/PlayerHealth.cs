@@ -10,7 +10,10 @@ public class PlayerHealth : HealthSystem
     {
         ParticleSystem effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         audioSource.PlayOneShot(DieSound);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+       
+        // lock the playe position
+        gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         deathScreen.gameObject.SetActive(true);
         if (deathScreen.isActiveAndEnabled && Inputs.Fire)
             {

@@ -61,6 +61,7 @@ PrefabInstance:
     - {fileID: 0}
     - {fileID: 3656729624392052615, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
     - {fileID: 6072890557542129235, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
+    - {fileID: 7916668054366082291, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -71,6 +72,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -1255177124759582709}
   m_SourcePrefab: {fileID: 100100000, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
+--- !u!114 &224660798402231640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6272405087871577005, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
+  m_PrefabInstance: {fileID: 6057949526969833205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2334196308387525796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3b0e5933eabfb4085bfad66ea46d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2334196308387525796 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8392057492032397905, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
@@ -89,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  currentHealth: 0
+  currentHealth: 3
   defaultcolor: {r: 0, g: 0, b: 0, a: 0}
   hitSound: {fileID: 8300000, guid: 1c03df91c62ea2a40bae07e775fa6711, type: 3}
   deathEffect: {fileID: 727762555800450268, guid: 252f00ae48503844cb52a24fdbfa7970, type: 3}
@@ -97,6 +109,7 @@ MonoBehaviour:
   deathScreen: {fileID: 0}
   Inputs: {fileID: 0}
   audioSource: {fileID: 2940028569730891177}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &-1255177124759582709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +129,7 @@ MonoBehaviour:
   VisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  ebs: {fileID: 0}
+  ebs: {fileID: 224660798402231640}
   DetectSource: {fileID: 0}
   DetectSound: {fileID: 0}
   layerMask:
