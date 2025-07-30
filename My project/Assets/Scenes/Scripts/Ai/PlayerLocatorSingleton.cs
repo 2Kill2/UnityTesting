@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AlexScripts;
-using OpenCover.Framework.Model;
 
 /// <Summary>
 /// MonoBehaviour that only exists while the game is in play

@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9319e1d120cc4d64d9fbccadb8f31542, type: 2}
     - target: {fileID: 5817413623146619468, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5053215
+      value: -1.5025351
       objectReference: {fileID: 0}
     - target: {fileID: 5817413623146619468, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 7.75
       objectReference: {fileID: 0}
     - target: {fileID: 5817413623146619468, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.9266002
+      value: 1.9882498
       objectReference: {fileID: 0}
     - target: {fileID: 5817413623146619468, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56,13 +56,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sniper Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3656729624392052615, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
+    - {fileID: 2114838363546736979, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
+    - {fileID: 6072890557542129235, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8392057492032397905, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1842364143082289878}
+    - targetCorrespondingSourceObject: {fileID: 8392057492032397905, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5662086536844649843}
   m_SourcePrefab: {fileID: 100100000, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}
 --- !u!114 &1744975024354280981 stripped
 MonoBehaviour:
@@ -110,6 +116,27 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &5662086536844649843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4273345849643225065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed94913418195241a3ef5f77bb45b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  currentHealth: 0
+  defaultcolor: {r: 0, g: 0, b: 0, a: 0}
+  hitSound: {fileID: 8300000, guid: 1c03df91c62ea2a40bae07e775fa6711, type: 3}
+  deathEffect: {fileID: 727762555800450268, guid: 252f00ae48503844cb52a24fdbfa7970, type: 3}
+  DieSound: {fileID: 0}
+  deathScreen: {fileID: 0}
+  Inputs: {fileID: 0}
+  audioSource: {fileID: 3739208338129782500}
 --- !u!195 &5609815332908677781 stripped
 NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 207583300455192365, guid: c48ca3b842a0c544f81a1aa61e91940e, type: 3}

@@ -7,16 +7,17 @@ namespace AlexScripts
 {
 
     [SerializeField]
-    public class HealthSystem : MonoBehaviour
+    public abstract class HealthSystem : MonoBehaviour
     {
         [SerializeField] private float maxHealth = 100f;
         [SerializeField] private float currentHealth;
         [SerializeField] private Color defaultcolor;
         [SerializeField] private AudioClip hitSound;
-        [SerializeField] private ParticleSystem deathEffect;
-        [SerializeField] private AudioClip DieSound;
-        [SerializeField] private Canvas deathScreen;
-        [SerializeField] private PlayerInputScript Inputs;
+        [SerializeField] protected ParticleSystem deathEffect;
+        [SerializeField] protected AudioClip DieSound;
+        [SerializeField] protected Canvas deathScreen;
+        [SerializeField] protected PlayerInputScript Inputs;
+        [SerializeField] protected AudioSource audioSource;
         private void Start()
         {
             currentHealth = maxHealth;
@@ -34,13 +35,11 @@ namespace AlexScripts
         {
             currentHealth -= amount;
             hitflash();
-            //activate hit marker & sound
-            //AudioSource.PlayOneShot(hitSound);
             if (currentHealth <= 0)
             {
                 Die();
             }
-        }
+        }   
 
         private void hitflash() 
         {
@@ -56,28 +55,9 @@ namespace AlexScripts
             gameObject.GetComponent<Renderer>().material.color = defaultcolor;
         }
 
-        [SerializeField] protected AudioSource audioSource;
 
-        private void Die()
-        {
-
-            //AudioSource.PlayOneShot(DieSound);
-            ParticleSystem effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
-
-            audioSource.PlayOneShot(DieSound);
-            Destroy(gameObject);
-
-            deathScreen.gameObject.SetActive(true);
-            if (deathScreen.isActiveAndEnabled && Inputs.Fire)
-            {
-                //restart the game or load main menu
-                UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-            }
-            if (deathScreen.isActiveAndEnabled && Inputs.Aim)
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("SimpleLevel");
-            }
-        }
+        protected abstract void Die();
+       
         public float GetCurrentHealth()
         {
             return currentHealth;

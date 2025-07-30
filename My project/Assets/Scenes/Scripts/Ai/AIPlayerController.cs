@@ -44,7 +44,7 @@ public abstract class AIPlayerController : MonoBehaviour
         if (_currentCooldown <= 0)
         {
             CanFire = true;
-            Debug.Log("CanFire Set True");
+            //Debug.Log("CanFire Set True");
 
         }
     }
@@ -60,25 +60,35 @@ public abstract class AIPlayerController : MonoBehaviour
     {
         while (true)
         {
-            // Move to waypoint A
-            agent.SetDestination(waypointA.position);
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, waypointA.position) < 1f);
-            yield return new WaitForSeconds(3f); // Wait for 3 seconds
-            // Move to waypoint B
-            agent.SetDestination(waypointB.position);
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, waypointB.position) < 0.1f);
-            yield return new WaitForSeconds(3f); // Wait for 3 seconds
+
+            if (waypointA == null || waypointB == null)
+            {
+                Debug.LogWarning("Waypoints are not set. Stopping patrol.");
+                yield break; // Exit the coroutine if waypoints are not set
+            }
+            else
+            {
+                // Move to waypoint A
+                agent.SetDestination(waypointA.position);
+                yield return new WaitUntil(() => Vector3.Distance(transform.position, waypointA.position) < 1f);
+                yield return new WaitForSeconds(3f); // Wait for 3 seconds
+                                                     // Move to waypoint B
+                agent.SetDestination(waypointB.position);
+                yield return new WaitUntil(() => Vector3.Distance(transform.position, waypointB.position) < 0.1f);
+                yield return new WaitForSeconds(3f); // Wait for 3 seconds
+            }
+            
         }
     }
 
     public LayerMask layerMask;
     private void FindTarget()
     {
-        Debug.Log("FindTarget Called");
+        //Debug.Log("FindTarget Called");
         Debug.DrawRay(transform.position, PlayerLocatorSingleton.Instance.transform.position - transform.position + new Vector3(0f, 1f, 0f), Color.red, 0.1f);
         if (Physics.Raycast(transform.position, PlayerLocatorSingleton.Instance.transform.position - transform.position + new Vector3(0f, 1f, 0f), out RaycastHit hit))
         {
-            Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+            //Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
             // Check if the hit object is the player
             if (hit.collider.gameObject == PlayerLocatorSingleton.Instance.gameObject)
             {
@@ -88,7 +98,7 @@ public abstract class AIPlayerController : MonoBehaviour
                     CanFire = false;
                     _currentCooldown = FireCooldown;
                 }
-                Debug.Log("Player detected!");
+                //Debug.Log("Player detected!");
                 GetComponent<Renderer>().material.color = Color.yellow;
                 Chase();
                 //if too close do RunAway
@@ -100,7 +110,7 @@ public abstract class AIPlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Player out of angle range");
+                //Debug.Log("Player out of angle range");
                 GetComponent<Renderer>().material.color = Color.white;
                 Patrol();
             }
@@ -125,7 +135,7 @@ public abstract class AIPlayerController : MonoBehaviour
     {
         // Fire the bullet
         ebs.Fire(PlayerLocatorSingleton.Instance.transform.position);
-        Debug.Log("Fired from ShootingRoutine");
+        //Debug.Log("Fired from ShootingRoutine");
     }
 
     protected abstract void Chase();
