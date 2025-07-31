@@ -4616,7 +4616,7 @@ MonoBehaviour:
   currentHealth: 3
   defaultcolor: {r: 0, g: 0, b: 0, a: 0}
   hitSound: {fileID: 0}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 727762555800450268, guid: 252f00ae48503844cb52a24fdbfa7970, type: 3}
   DieSound: {fileID: 0}
   deathScreen: {fileID: 0}
   Inputs: {fileID: 0}

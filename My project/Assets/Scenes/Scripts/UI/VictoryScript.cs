@@ -15,8 +15,15 @@ public class VictoryScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             victoryCanvas.enabled = true;
-            Time.timeScale = 0f; // Pause the game
+            if (victoryCanvas.enabled == true)
+            {
+                Time.timeScale = 0f; // Pause the game
+            }
+            else
+            {
+                Debug.Log("VictoryScript has fucked up");
+            }
         }
-    }
 
+    }
 }
